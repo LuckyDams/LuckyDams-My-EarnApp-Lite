@@ -1,0 +1,23 @@
+FROM ubuntu:20.04
+
+LABEL maintainer="LuckyDams"
+LABEL org.opencontainers.image.authors="luckydams@gmail.com"
+
+ENV container=docker
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends wget \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+WORKDIR /app
+COPY src/start_app.sh /app/start_app.sh 
+RUN chmod +x /app/start_app.sh && ln -s /app/start_app.sh /usr/bin/start_app
+COPY src/check_app.sh /app/check_app.sh 
+RUN chmod +x /app/check_app.sh && ln -s /app/check_app.sh /usr/bin/check_app
+COPY src/setup.sh /app/setup.sh
+RUN bash /app/setup.sh && rm -f /app/setup.sh
+
+VOLUME [ "/etc/earnapp" ]
+ENTRYPOINT  ["start_app"]
+HEALTHCHECK --interval=1m --timeout=10s --start-period=10s --retries=2 CMD check_app 
