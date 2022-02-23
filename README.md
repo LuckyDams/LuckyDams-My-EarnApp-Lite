@@ -29,4 +29,8 @@ services:
 
 ## Like it ?
 
-Please congrat [fazalfarhan01](https://github.com/fazalfarhan01/EarnApp-Docker#like-my-work).
+Please congrat [fazalfarhan01](https://github.com/fazalfarhan01/EarnApp-Docker#like-my-work).  
+
+
+Source: [GitHub](https://github.com/LuckyDams/My-EarnApp-Lite)  
+Build(s):  [Docker Hub](https://hub.docker.com/r/luckydams/my-earnapp-lite)
