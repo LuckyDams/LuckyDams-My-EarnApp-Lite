@@ -1,5 +1,5 @@
 #!/bin/bash
 
-wget -qO- myip.wtf/json || echo "No internet connectivity..."; exit 1
-cat /etc/earnapp/status | grep enabled || echo "App status not enabled..."; exit 1
+wget -qO- myip.wtf/json || { echo "ERROR: No response from myip.wtf, check connectivity..."; exit 1;}
+grep -q enabled /etc/earnapp/status || { echo "ERROR: Status not enabled, check app..."; exit 1;}
 
